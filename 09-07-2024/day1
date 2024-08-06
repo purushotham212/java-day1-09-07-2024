@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Traf {
+    int greenligDuration;
+    int redligDuration;
+    int trafficDensity;
+
+    Traf(int green, int red) {
+        greenligDuration = green;
+        redligDuration = red;
+        trafficDensity = 0;
+    }
+
+    void settrafficDensity(int density) {
+        trafficDensity = density;
+    }
+
+    void controlTraf() {
+        if (trafficDensity > 20) {
+            greenligDuration += 10;
+        } else if (trafficDensity < 5) {
+            greenligDuration = Math.max(30, greenligDuration - 10);
+        }
+        System.out.println("Green Light " + greenligDuration + " seconds");
+    }
+}
+
+public class TrafficSignal1234 { // Changed to public class
+    public static void main(String[] args) { // Corrected String[] args
+        Traf signal = new Traf(30, 30);
+        Random rand = new Random();
+
+        for (int i = 0; i < 10; i++) {
+            int currentdensity = rand.nextInt(30);
+            signal.settrafficDensity(currentdensity);
+            System.out.println("Current traffic density: " + currentdensity);
+            signal.controlTraf();
+        }
+    }
+}
